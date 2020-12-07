@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/business/api_request/api_request.dart';
 import 'package:flutter_app/business/models/hot_city_model.dart';
+import 'package:flutter_app/business/ui/now_weather_of_city_widget.dart';
 import 'index.dart';
 
 void main() {
@@ -40,14 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void getHotCityData() async {
     final response = await DataReuest.getHotCity();
-    if(response!=null){
-      state=LoaderState.Succeed;
+    if (response != null) {
+      state = LoaderState.Succeed;
       lookup = response;
-    }else{
-      state=LoaderState.NoData;
+    } else {
+      state = LoaderState.NoData;
     }
-    setState(() {
-    });
+    setState(() {});
   }
 
   LoaderState state = LoaderState.Loading;
@@ -73,9 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('${lookup?.topCityList[index]?.name}'),
                 subtitle: Text('${lookup?.topCityList[index]?.country}'),
                 onTap: () {
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('${lookup?.topCityList[index]?.name}'),
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => NowWeatherOfCityWidget(
+                        id: (lookup as HotCityModel).topCityList[index]?.id,
+                        name: lookup?.topCityList[index]?.name,
+                      ),
                     ),
                   );
                 },

@@ -47,7 +47,7 @@ class HttpUtils {
           ),
         );
       }
-      dio.interceptors.add(LogInterceptor());
+      dio.interceptors.add(LogInterceptor(responseBody: true));
 
       // 在调试模式下需要抓包调试，所以我们使用代理，并禁用HTTPS证书校验
       // if (PROXY_ENABLE) {
