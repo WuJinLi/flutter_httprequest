@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/res/styles.dart';
-import 'package:flutter_app/ui/button.dart';
+
+import '../index.dart';
+
 
 
 class EmptyPage extends StatelessWidget {

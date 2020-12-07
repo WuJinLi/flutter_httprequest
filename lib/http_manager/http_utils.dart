@@ -1,10 +1,6 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
 import 'package:connectivity/connectivity.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_app/http_manager/proxy.dart';
 import 'package:flutter_app/http_manager/interceptors/retry_interceptor.dart';
 import 'cache.dart';
 import 'connectivity_request_retrier.dart';

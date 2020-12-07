@@ -1,12 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/business/api_request/api_request.dart';
 import 'package:flutter_app/business/models/hot_city_model.dart';
-import 'package:flutter_app/business/models/lookup_info.dart';
-import 'package:flutter_app/enum/enum.dart';
-import 'package:flutter_app/ui/loader.dart';
-
-import 'business/constant.dart';
+import 'index.dart';
 
 void main() {
   runApp(MyApp());

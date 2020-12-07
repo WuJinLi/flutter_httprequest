@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/utils/utils.dart';
+
+import '../index.dart';
+
 
 class LoadingView extends StatelessWidget {
   @override

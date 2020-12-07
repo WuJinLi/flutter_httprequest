@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/business/constant.dart';
 import 'package:flutter_app/business/models/hot_city_model.dart';
 import 'package:flutter_app/business/models/lookup_info.dart';
-import 'package:flutter_app/http_manager/export_index.dart';
+
+import '../../index.dart';
 
 class DataReuest {
   static Future<LookupInfo> getLookup() async {

@@ -1,9 +1,7 @@
 import 'dart:collection';
-
 import 'package:dio/dio.dart';
-import 'package:flutter_app/http_manager/sp.dart';
-
 import 'cache.dart';
+import 'sp.dart';
 
 class CacheObject {
   CacheObject(this.response)
