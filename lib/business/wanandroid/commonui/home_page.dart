@@ -47,71 +47,47 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return LoaderContainer(
-      contentView: CustomScrollView(
-        slivers: [
-          SliverPersistentHeader(
-            delegate: MySliverPersistentHeaderDelegate(_bannerModel),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate((content, index) {
-              // var data = _topArticle?.data[index];
-              return ItemOfListAboutArticle(
-                  _topArticle?.data[index]?.publishTime.toString(),
-                  _topArticle?.data[index]?.author,
-                  _topArticle?.data[index]?.title,
-                  _topArticle?.data[index]?.chapterName);
-            }, childCount: _topArticle?.data?.length),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate((content, index) {
-              // var data = _topArticle?.data[index];
-              return ItemOfListAboutArticle(
-                  _articleModel?.data?.datas[index].publishTime.toString(),
-                  _articleModel?.data?.datas[index].author,
-                  _articleModel?.data?.datas[index].title,
-                  _articleModel?.data?.datas[index].chapterName);
-            }, childCount: _articleModel?.data?.datas?.length),
-          )
-        ],
+      contentView: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              expandedHeight: 200.0,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Swiper(
+                  itemCount: _bannerModel?.data?.length,
+                  itemBuilder: (context, index) {
+                    return Image.network(
+                      _bannerModel?.data[index]?.imagePath,
+                      fit: BoxFit.fill,
+                    );
+                  },
+                  pagination: SwiperPagination(),
+                  control: SwiperControl(),
+                  autoplay: true,
+                ),
+              ),
+            )
+          ];
+        },
+        body: ListView.builder(
+          itemBuilder: (context, index) {
+            return ItemOfListAboutArticle(
+                _articleModel?.data?.datas[index]?.publishTime.toString(),
+                _articleModel?.data?.datas[index]?.author,
+                _articleModel?.data?.datas[index]?.title,
+                _articleModel?.data?.datas[index]?.chapterName);
+          },
+          itemCount: _articleModel?.data?.datas?.length,
+        ),
       ),
       loaderState: _loaderState,
+      onReload: (){
+        setState(() {
+          _loaderState=LoaderState.Loading;
+        });
+        _initPageData();
+      },
     );
   }
-}
-
-class MySliverPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
-  BannerModel _bannerModel;
-
-  MySliverPersistentHeaderDelegate(this._bannerModel);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: Swiper(
-        itemCount: _bannerModel?.data?.length,
-        itemBuilder: (context, index) {
-          return Image.network(
-            _bannerModel?.data[index]?.imagePath,
-            fit: BoxFit.fill,
-          );
-        },
-        pagination: SwiperPagination(),
-        control: SwiperControl(),
-        autoplay: true,
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => 200.0;
-
-  @override
-  double get minExtent => 100.0;
-
-  @override
-  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) =>
-      false; // 如果内容需要更新，设置为true
 }
