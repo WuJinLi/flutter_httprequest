@@ -2,7 +2,7 @@
 /// errorCode : 0
 /// errorMsg : ""
 class ProjectOfTabsModel {
-  List<Data> data;
+  List<ProjectOfTabsData> data;
   int errorCode;
   String errorMsg;
 
@@ -15,7 +15,7 @@ class ProjectOfTabsModel {
     if (json["data"] != null) {
       data = [];
       json["data"].forEach((v) {
-        data.add(Data.fromJson(v));
+        data.add(ProjectOfTabsData.fromJson(v));
       });
     }
     errorCode = json["errorCode"];
@@ -43,7 +43,7 @@ class ProjectOfTabsModel {
 /// userControlSetTop : false
 /// visible : 0
 
-class Data {
+class ProjectOfTabsData {
   List<dynamic> children;
   int courseId;
   int id;
@@ -53,7 +53,7 @@ class Data {
   bool userControlSetTop;
   int visible;
 
-  Data({
+  ProjectOfTabsData({
       this.children, 
       this.courseId, 
       this.id, 
@@ -63,7 +63,7 @@ class Data {
       this.userControlSetTop, 
       this.visible});
 
-  Data.fromJson(dynamic json) {
+  ProjectOfTabsData.fromJson(dynamic json) {
     if (json["children"] != null) {
       children = [];
       json["children"].forEach((v) {

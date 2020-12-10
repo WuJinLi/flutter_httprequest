@@ -3,17 +3,17 @@
 /// errorMsg : ""
 
 class ProjectArticleOfTabModel {
-  Data data;
+  ProjectArticleOfTabData data;
   int errorCode;
   String errorMsg;
 
   ProjectArticleOfTabModel({
-      this.data, 
-      this.errorCode, 
+      this.data,
+      this.errorCode,
       this.errorMsg});
 
   ProjectArticleOfTabModel.fromJson(dynamic json) {
-    data = json["data"] != null ? Data.fromJson(json["data"]) : null;
+    data = json["data"] != null ? ProjectArticleOfTabData.fromJson(json["data"]) : null;
     errorCode = json["errorCode"];
     errorMsg = json["errorMsg"];
   }
@@ -38,30 +38,30 @@ class ProjectArticleOfTabModel {
 /// size : 15
 /// total : 64
 
-class Data {
+class ProjectArticleOfTabData {
   int curPage;
-  List<Datas> datas;
+  List<ProjectArticleOfTabDatas> datas;
   int offset;
   bool over;
   int pageCount;
   int size;
   int total;
 
-  Data({
-      this.curPage, 
-      this.datas, 
-      this.offset, 
-      this.over, 
-      this.pageCount, 
-      this.size, 
+  ProjectArticleOfTabData({
+      this.curPage,
+      this.datas,
+      this.offset,
+      this.over,
+      this.pageCount,
+      this.size,
       this.total});
 
-  Data.fromJson(dynamic json) {
+  ProjectArticleOfTabData.fromJson(dynamic json) {
     curPage = json["curPage"];
     if (json["datas"] != null) {
       datas = [];
       json["datas"].forEach((v) {
-        datas.add(Datas.fromJson(v));
+        datas.add(ProjectArticleOfTabDatas.fromJson(v));
       });
     }
     offset = json["offset"];
@@ -120,7 +120,7 @@ class Data {
 /// visible : 1
 /// zan : 0
 
-class Datas {
+class ProjectArticleOfTabDatas {
   String apkLink;
   int audit;
   String author;
@@ -154,41 +154,41 @@ class Datas {
   int visible;
   int zan;
 
-  Datas({
-      this.apkLink, 
-      this.audit, 
-      this.author, 
-      this.canEdit, 
-      this.chapterId, 
-      this.chapterName, 
-      this.collect, 
-      this.courseId, 
-      this.desc, 
-      this.descMd, 
-      this.envelopePic, 
-      this.fresh, 
-      this.id, 
-      this.link, 
-      this.niceDate, 
-      this.niceShareDate, 
-      this.origin, 
-      this.prefix, 
-      this.projectLink, 
-      this.publishTime, 
-      this.realSuperChapterId, 
-      this.selfVisible, 
-      this.shareDate, 
-      this.shareUser, 
-      this.superChapterId, 
-      this.superChapterName, 
-      this.tags, 
-      this.title, 
-      this.type, 
-      this.userId, 
-      this.visible, 
+  ProjectArticleOfTabDatas({
+      this.apkLink,
+      this.audit,
+      this.author,
+      this.canEdit,
+      this.chapterId,
+      this.chapterName,
+      this.collect,
+      this.courseId,
+      this.desc,
+      this.descMd,
+      this.envelopePic,
+      this.fresh,
+      this.id,
+      this.link,
+      this.niceDate,
+      this.niceShareDate,
+      this.origin,
+      this.prefix,
+      this.projectLink,
+      this.publishTime,
+      this.realSuperChapterId,
+      this.selfVisible,
+      this.shareDate,
+      this.shareUser,
+      this.superChapterId,
+      this.superChapterName,
+      this.tags,
+      this.title,
+      this.type,
+      this.userId,
+      this.visible,
       this.zan});
 
-  Datas.fromJson(dynamic json) {
+  ProjectArticleOfTabDatas.fromJson(dynamic json) {
     apkLink = json["apkLink"];
     audit = json["audit"];
     author = json["author"];
@@ -277,7 +277,7 @@ class Tags {
   String url;
 
   Tags({
-      this.name, 
+      this.name,
       this.url});
 
   Tags.fromJson(dynamic json) {
