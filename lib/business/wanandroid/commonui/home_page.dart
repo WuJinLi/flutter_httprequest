@@ -7,6 +7,7 @@ import 'package:flutter_app/business/wanandroid/ui/item_of_list_about_article.da
 import 'package:flutter_app/enum/enum.dart';
 import 'package:flutter_app/ui/export_index.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              expandedHeight: 200.0,
+              expandedHeight: 190.0,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 background: Swiper(
@@ -65,9 +66,20 @@ class _HomePageState extends State<HomePage> {
                   pagination: SwiperPagination(),
                   control: SwiperControl(),
                   autoplay: true,
+                  onTap: (index) {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return WebviewScaffold(
+                        appBar: AppBar(
+                          title: Text(_bannerModel?.data[index]?.title),
+                        ),
+                        url: _bannerModel?.data[index]?.url,
+                      );
+                    }));
+                  },
                 ),
               ),
-            )
+            ),
           ];
         },
         body: ListView.builder(
@@ -76,15 +88,26 @@ class _HomePageState extends State<HomePage> {
                 _articleModel?.data?.datas[index]?.publishTime.toString(),
                 _articleModel?.data?.datas[index]?.author,
                 _articleModel?.data?.datas[index]?.title,
-                _articleModel?.data?.datas[index]?.chapterName);
+                _articleModel?.data?.datas[index]?.chapterName, () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return WebviewScaffold(
+                  appBar: AppBar(
+                    title: Text(
+                      _articleModel?.data?.datas[index]?.title,
+                    ),
+                  ),
+                  url: _articleModel?.data?.datas[index]?.link,
+                );
+              }));
+            });
           },
           itemCount: _articleModel?.data?.datas?.length,
         ),
       ),
       loaderState: _loaderState,
-      onReload: (){
+      onReload: () {
         setState(() {
-          _loaderState=LoaderState.Loading;
+          _loaderState = LoaderState.Loading;
         });
         _initPageData();
       },
